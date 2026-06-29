@@ -2,16 +2,14 @@
 import { onMounted } from 'vue'
 import Sidebar from './components/Sidebar.vue'
 import CDCard from './components/CDCard.vue'
-import { useAlbumStore } from './stores/albums' // Import pinia store for albums
+import { useAlbumStore } from './stores/Albums' // Import pinia store for albums
 
 // Activate pinia store
 const albumStore = useAlbumStore()
 
 const handleReset = async () => {
-  // 1. Töm storens cache
   albumStore.clearCache()
   
-  // 2. Hämta direkt de nya skivorna baserat på dina senaste trendingIds
   await albumStore.fetchTrending()
 }
 
@@ -57,7 +55,7 @@ onMounted(() => {
             <CDCard 
               v-for="album in albumStore.trendingList" 
               :key="album.id" 
-              :album="album" 
+              :album="album"
             />
           </div>
         </section>
