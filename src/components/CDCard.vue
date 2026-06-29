@@ -39,7 +39,7 @@ defineProps({
       <p class="text-gray-500 text-sm m-0">{{ album.title }}</p>
       <div class="mt-4 flex items-baseline gap-2">
         <span class="text-xs text-gray-400 uppercase tracking-wider">Value</span>
-        <span class="text-sm font-bold text-gray-900">{{ album.price }} KR</span>
+        <span class="text-sm font-bold text-gray-900">{{ album.price }} SEK</span>
       </div>
     </div>
   </div>

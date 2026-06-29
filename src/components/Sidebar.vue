@@ -70,7 +70,7 @@ const handleReset = async () => {
         class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-50 hover:bg-red-100 active:bg-red-200 text-red-600 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200"
       >
         <Trash2 :size="14" />
-        Rensa Cache
+        Clear Cache
       </button>
     </div>
   </aside>

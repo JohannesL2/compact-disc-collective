@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useAlbumStore = defineStore('albums', {
   state: () => ({
-    trendingIds: [11650, 31359637, 4587655, 19696420],
+    trendingIds: [11650, 4572672, 17467951, 19676596],
     cachedAlbums: {}, // Save data
     trendingList: [],
     loading: false

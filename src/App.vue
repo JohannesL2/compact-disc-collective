@@ -50,7 +50,7 @@ onMounted(() => {
           <div v-if="albumStore.loading" class="flex justify-center py-20">
             <div class="animate-spin rounded-full h-8 w-8 border-2 border-gray-900 border-t-transparent"></div>
           </div>
-          <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
+          <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-16">
             <CDCard 
               v-for="album in albumStore.trendingList" 
               :key="album.id" 
