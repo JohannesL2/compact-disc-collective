@@ -7,6 +7,14 @@ import { useAlbumStore } from './stores/albums' // Import pinia store for albums
 // Activate pinia store
 const albumStore = useAlbumStore()
 
+const handleReset = async () => {
+  // 1. Töm storens cache
+  albumStore.clearCache()
+  
+  // 2. Hämta direkt de nya skivorna baserat på dina senaste trendingIds
+  await albumStore.fetchTrending()
+}
+
 // Get cd discs when you enter the site
 onMounted(() => {
   albumStore.fetchTrending()

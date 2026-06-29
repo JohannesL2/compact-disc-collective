@@ -1,13 +1,16 @@
 <script setup>
 import { ref } from 'vue'
+import { useAlbumStore } from '../stores/albums'
 //Import modern icons
 import { 
   Compass,      // "Explore"
   Disc,         // "My Collection"
   Heart,        // "Wishlist"
-  BarChart2     // "Analytics"
+  BarChart2,     // "Analytics"
+  Trash2
 } from 'lucide-vue-next'
 
+const albumStore = useAlbumStore()
 // Check which menuitem is active
 const activeItem = ref('Explore')
 
@@ -18,6 +21,11 @@ const menuItems = [
   { name: 'Wishlist', icon: Heart },
   { name: 'Analytics', icon: BarChart2 }
 ]
+
+const handleReset = async () => {
+  albumStore.clearCache()
+  await albumStore.fetchTrending()
+}
 </script>
 
 <template>
@@ -53,8 +61,17 @@ const menuItems = [
           />
           {{ item.name }}
         </button>
+        
       </nav>
     </div>
-
+<div class="pt-4 border-t border-red-500">
+      <button 
+        @click="handleReset"
+        class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-50 hover:bg-red-100 active:bg-red-200 text-red-600 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200"
+      >
+        <Trash2 :size="14" />
+        Rensa Cache
+      </button>
+    </div>
   </aside>
 </template>

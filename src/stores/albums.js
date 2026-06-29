@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useAlbumStore = defineStore('albums', {
   state: () => ({
-    trendingIds: [4933, 51101, 42340, 111815],
+    trendingIds: [11650, 31359637, 4587655, 19696420],
     cachedAlbums: {}, // Save data
     trendingList: [],
     loading: false
@@ -48,6 +48,12 @@ export const useAlbumStore = defineStore('albums', {
       } finally {
         this.loading = false
       }
+    },
+
+    clearCache() {
+      this.cachedAlbums = {}
+      this.trendingList = []
+      console.log('Cachen har rensats!')
     }
   }
 })
