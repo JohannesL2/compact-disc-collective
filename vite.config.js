@@ -12,6 +12,7 @@ export default defineConfig({
     tailwindcss(),
     vueDevTools(),
   ],
+  base: '/compact-disc-collective',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
