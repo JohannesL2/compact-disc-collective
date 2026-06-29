@@ -24,9 +24,9 @@ onMounted(() => {
 <template>
   <div class="min-h-screen bg-gray-50/30 text-gray-900 font-sans antialiased">
     <Sidebar />
-    <main class="pl-0 md:pl-64 pb-24 md:pb-0 min-h-screen">
+    <main class="pl-0 md:pl-64 pt-16 md:pt-0 pb-24 md:pb-0 min-h-screen">
       <div class="max-w-7xl mx-auto p-6 md:p-16 space-y-16">
-        <div class="w-full max-w-2xl mx-auto pt-4">
+        <div class="w-full max-w-2xl mx-auto pt-8">
           <div class="relative group">
             <input 
               type="text" 
@@ -41,16 +41,19 @@ onMounted(() => {
         <section class="space-y-10">
           <div class="flex flex-col gap-1">
             <h2 class="text-xs font-black uppercase tracking-widest text-gray-400">
-              Kurerat Innehåll
+              Curated content
             </h2>
             <h3 class="text-xl font-bold text-gray-950 tracking-tight">
-              Trending denna vecka
+              Trending this week
             </h3>
           </div>
           <div v-if="albumStore.loading" class="flex justify-center py-20">
             <div class="animate-spin rounded-full h-8 w-8 border-2 border-gray-900 border-t-transparent"></div>
           </div>
-          <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-16">
+          <div 
+            v-else 
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 justify-center justify-items-center w-full"
+          >
             <CDCard 
               v-for="album in albumStore.trendingList" 
               :key="album.id" 

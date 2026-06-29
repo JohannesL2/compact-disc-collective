@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useAlbumStore } from '../stores/albums'
+import { useAlbumStore } from '../stores/Albums'
 //Import modern icons
 import { 
   Compass,      // "Explore"
@@ -85,14 +85,12 @@ const handleReset = async () => {
 
 
         <div>
-          <!-- Stäng-kryss (Visas bara på mobil) -->
           <button 
             @click="mobileIsOpen = false"
             class="md:hidden p-1.5 rounded-lg hover:bg-gray-100 text-gray-500 cursor-pointer"
           >
             <X :size="18" />
           </button>
-        <!-- Själva knappen som växlar läge på isCollapsed -->
         <button 
   @click="isCollapsed = !isCollapsed"
   class="hidden md:block p-1.5 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-900 cursor-pointer transition-colors"
@@ -101,8 +99,6 @@ const handleReset = async () => {
         </button>
       </div>
     </div>
-
-      <!-- Navigationsmeny -->
       <nav class="space-y-2">
         <button
           v-for="item in menuItems"
@@ -130,7 +126,6 @@ const handleReset = async () => {
       </nav>
     </div>
 
-    <!-- Bottendel med Clear Cache -->
     <div class="pt-4 border-t border-zinc-100">
       <button 
         @click="handleReset"
