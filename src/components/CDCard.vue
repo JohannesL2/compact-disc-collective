@@ -69,6 +69,12 @@ const togglePreview = () => {
   }
 }
 
+const handleMobileCoverClick = () => {
+  if (window.innerWidth < 768) {
+    togglePreview()
+  }
+}
+
 const startNewTrack = (player) => {
   clearInterval(player.fadeInterval)
   player.audio.volume = 1
@@ -86,6 +92,8 @@ const startNewTrack = (player) => {
   }
 }
 
+
+
 onBeforeUnmount(() => {
   const player = getGlobalAudio()
   if (player && player.currentPlayingRef === isPlaying) {
@@ -99,7 +107,10 @@ onBeforeUnmount(() => {
 <template>
   <div class="group relative w-64 cursor-pointer">
 
-    <div class="relative w-48 h-48 z-10 shadow-lg bg-white">
+    <div 
+      @click="handleMobileCoverClick"
+      class="relative w-48 h-48 z-10 shadow-lg bg-white rounded-sm cursor-pointer"
+    >
       <!-- Jewelcase front -->
       <img :src="album.cover" class="w-full h-full object-cover z-20 relative rounded-sm shadow-md" />
       
@@ -107,7 +118,7 @@ onBeforeUnmount(() => {
       <div 
         @click.stop="togglePreview"
         :class="[
-          'absolute top-2 w-44 h-44 left-6 rounded-full bg-gradient-to-r from-gray-400 via-gray-200 to-gray-500 shadow-inner transform transition-transform duration-500 z-0 flex items-center justify-center overflow-hidden',
+          'absolute top-2 w-44 h-44 left-6 rounded-full bg-gradient-to-r from-gray-400 via-gray-200 to-gray-500 shadow-inner transform transition-transform duration-500 z-0 flex items-center justify-center overflow-hidden pointer-events-none md:pointer-events-auto',
           isPlaying ? 'translate-x-20 animate-[spin_4s_linear_infinite]' : 'group-hover:translate-x-20'
         ]"
       >
@@ -123,15 +134,13 @@ onBeforeUnmount(() => {
         <!-- Hole overlay for cd disc -->
         <div class="w-12 h-12 rounded-full bg-white border border-gray-200/80 flex items-center justify-center z-10 shadow-sm">
           <div class="w-4 h-4 rounded-full bg-transparent border border-gray-300">
-            <!-- Visar en liten Play/Pause-ikon i mitten så man ser status live -->
             <div class="text-[10px] text-gray-400 font-bold select-none text-center leading-4">
             </div>
           </div>
         </div>
-      </div> <!-- FIX: Här ska CD-diven stängas -->
-    </div> <!-- FIX: Här ska omslagsboxen stängas -->
+      </div>
+    </div>
     
-    <!-- Nu ligger texten utanför och hamnar snyggt undertill -->
     <div class="mt-6">
       <h3 class="font-bold text-gray-900 text-sm m-0">{{ album.artist }}</h3>
       <p class="text-gray-500 text-sm m-0">{{ album.title }}</p>
