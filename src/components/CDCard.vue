@@ -112,7 +112,7 @@ onBeforeUnmount(() => {
       class="relative w-48 h-48 z-10 shadow-lg bg-white rounded-sm cursor-pointer"
     >
       <!-- Jewelcase front -->
-      <img :src="album.cover" class="w-full h-full object-cover z-20 relative rounded-sm shadow-md" />
+      <img :src="album.cover" class="w-full h-full object-cover z-20 relative rounded-sm shadow-md antialiased will-change-transform" />
       
       <!-- CD-disc showing on hover -->
       <div 

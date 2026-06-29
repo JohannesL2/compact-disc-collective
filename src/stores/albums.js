@@ -49,9 +49,9 @@ export const useAlbumStore = defineStore('albums', {
           // Format data to look better
           const formatted = {
             id: data.id,
-            artist: cleanArtistName(data.artists?.[0]?.name || 'Okänd Artist'), // Ändrad för snyggare namn
+            artist: cleanArtistName(data.artists?.[0]?.name || 'Okänd Artist'),
             title: data.title,
-            cover: data.thumb || 'https://via.placeholder.com/300', 
+            cover: data.images?.[0]?.uri || data.thumb || 'https://via.placeholder.com/300',
             price: Math.round((data.lowest_price || 15) * 11.5),
             preview: previewUrl
           }
