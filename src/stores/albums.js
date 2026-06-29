@@ -1,5 +1,10 @@
 import { defineStore } from 'pinia'
 
+
+const cleanArtistName = (name) => {
+  return name.replace(/\s*\(\d+\)$/, '').trim()
+}
+
 export const useAlbumStore = defineStore('albums', {
   state: () => ({
     trendingIds: [11650, 4572672, 17467951, 19676596],
@@ -23,19 +28,32 @@ export const useAlbumStore = defineStore('albums', {
               'User-Agent': 'CompactDiscCollectivePortfolio/1.0' 
             }
           })
-          
+
           if (!res.ok) throw new Error(`Kunde inte hämta ID ${id}`)
-          const data = await res.json()
+          const data = await res.json();
+
+          let previewUrl = null
+          try {
+            const cleanArtist = cleanArtistName(data.artists?.[0]?.name || '')
+            const searchTerms = encodeURIComponent(`${cleanArtist} ${data.title}`)
+            const iTunesRes = await fetch(`https://itunes.apple.com/search?term=${searchTerms}&entity=song&limit=1`)
+            if (iTunesRes.ok) {
+              const iTunesData = await iTunesRes.json()
+              previewUrl = iTunesData.results?.[0]?.previewUrl || null
+            }
+          } catch (e) {
+            console.error("Kunde inte hämta iTunes-preview:", e)
+          }
+          // ----------------------------------
           
           // Format data to look better
           const formatted = {
             id: data.id,
-            artist: data.artists?.[0]?.name || 'Okänd Artist',
+            artist: cleanArtistName(data.artists?.[0]?.name || 'Okänd Artist'), // Ändrad för snyggare namn
             title: data.title,
-            // Data.thumb doesn't need any login
             cover: data.thumb || 'https://via.placeholder.com/300', 
-            // If price doesn't exist we put 15 SEK as standard value
-            price: Math.round((data.lowest_price || 15) * 11.5) 
+            price: Math.round((data.lowest_price || 15) * 11.5),
+            preview: previewUrl
           }
           
           this.cachedAlbums[id] = formatted
