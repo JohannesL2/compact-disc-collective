@@ -7,12 +7,6 @@ import { useAlbumStore } from './stores/Albums' // Import pinia store for albums
 // Activate pinia store
 const albumStore = useAlbumStore()
 
-const handleReset = async () => {
-  albumStore.clearCache()
-  
-  await albumStore.fetchTrending()
-}
-
 // Get cd discs when you enter the site
 onMounted(() => {
   albumStore.fetchTrending()
