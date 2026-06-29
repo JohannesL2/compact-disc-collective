@@ -24,8 +24,8 @@ onMounted(() => {
 <template>
   <div class="min-h-screen bg-gray-50/30 text-gray-900 font-sans antialiased">
     <Sidebar />
-    <main class="pl-64 min-h-screen">
-      <div class="max-w-7xl mx-auto p-12 md:p-16 space-y-16">
+    <main class="pl-0 md:pl-64 pb-24 md:pb-0 min-h-screen">
+      <div class="max-w-7xl mx-auto p-6 md:p-16 space-y-16">
         <div class="w-full max-w-2xl mx-auto pt-4">
           <div class="relative group">
             <input 
